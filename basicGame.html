@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+    var w = window.innerWidth; //sets the value of w to the width of your computer screen
+    var h = window.innerHeight; //sets the value of h to the height of your computer screen
+    var posX = 100;//This is the X Position of our player
+    var posY = 100;//This is the Y Position of our player
+    var userWidth = Number(prompt("Choose From 10-100")); //Number changes the user's input from something to an integer
+    var userSpeed = Number(prompt("Choose From 1-100")); //Number changes the user's input from something to an integer
+      function setup(){ //Is needed as it is the basic setup of code and will only runs once unless web is refreshed
+        createCanvas(w,h); //takes the global variable w and h and sets it as the background size
+      }
+      function draw(){ //Will run code 60 times a second
+        background(255); //Will turn it white
+        fill(color("#1589FF")); //Sets the color of the rectangle
+        strokeWeight(0); //Removes the line from the rectangle
+        rect(posX,posY,userWidth,userWidth,15); //sets the starting position of the rectangle and its size plus radius
+        if (keyIsDown(65) && (posX > 0)){ //this is the code for the left key (A)
+          posX -= userSpeed; //subtract position of X of rectangle by userSpeed
+        }
+        if(keyIsDown(68) && (posX < w-userWidth)){
+          posX += userSpeed; //add position of X of rectangle by userSpeed
+        }
+        if(keyIsDown(87) && (posY > 0)){
+          posY -= userSpeed; //subtract position of Y of rectangle by userSpeed
+        }
+        if(keyIsDown(83) && (posY < h-userWidth)){
+          posY += userSpeed; //add position of Y of rectangle by userSpeed
+        }
+      }
+    </script>
+  </body>
+</html>

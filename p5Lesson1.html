@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      
+      var speed = 15;
+      var diameter = 25;
+      var x;
+      var y;
+      //var r;
+      //var g;
+      //var b;
+      
+      function setup(){
+        createCanvas(w,h);
+        x = width/2
+        y = height/2
+        //r = random(256); // it is 256 because it starts from 0 to 255. There is no 256
+        //g = random(256);
+        //b = random(256);
+      }
+      
+      function draw(){
+        x += random(-speed, speed);
+        y += random(-speed, speed);
+        ellipse(x, y, diameter, diameter);
+        
+        //background(200,200,200);
+        //if (mouseIsPressed){
+        //fill(color(r,g,b));
+        //strokeWeight(0); //removes border line of the circle.
+        //ellipse(mouseX,mouseY,200,200);
+        //}
+        //else{
+          //noFill();
+        //}
+        
+        //fill(color("blue"));
+        //strokeWeight(0); //removes border line of the circle.
+        //rect(w/2,h/2,100,100);
+      }
+      
+    </script>
+  </body>
+</html>
