@@ -20,6 +20,8 @@
     var d;
     var s;
     var g;
+    var n;
+    var m;
     var sonic = 10;
     var size = 50;
       function setup(){
@@ -38,14 +40,17 @@
         otherBall.move();
         power.show();
         power.speed();
+        power.smaller();
         grow.show();
         grow.bigger();
+        grow.slower();
       }
       function ball(){ //this is an object.
         this.x = 100;
         this.y = 100;
         this.show = function(){
           fill(color('red'));
+          strokeWeight(0);
           ellipse(this.x,this.y,50,50); //always refer to "this object"
         }
         this.move = function(){ //these are objects and are expandable.
@@ -66,7 +71,7 @@
         }
         this.tag = function(){
           d = dist(this.x,this.y,otherBall.x,otherBall.y); //dist() is a function that takes the distance of the coodinate of this ball and the otherball
-          if (d < 50) { // if the value of d (the distance of the two balls) is less than 50 then a window will pop up signaling that you lose.
+          if (d < 25) { // if the value of d (the distance of the two balls) is less than 50 then a window will pop up signaling that you lose.
             window.alert("You Lose!");
             noloop();
           }
@@ -77,6 +82,7 @@
         this.y = 100;
         this.show = function(){
           fill(color('blue'));
+          strokeWeight(0);
           ellipse(this.x,this.y,size,size);
         }
         this.move = function(){ //these are objects and are expandable.
@@ -101,17 +107,29 @@
         this.y ;
         this.show = function(){
           fill(color('yellow'));
+          strokeWeight(0);
           rect(this.x,this.y,25,25);
         }
         this.speed = function(){
           s = dist(this.x,this.y,ball.x,ball.y);
           if (s < 50) {
-            sonic += 8;
+            sonic += 3;
             this.x = random(50, w-50);
             this.y = random(50, h-50);
             setTimeout(function(){
-            sonic -= 8;
-            }, 3000);
+            sonic -= 3;
+            }, 1500);
+          }
+        }
+        this.smaller = function(){
+          m = dist(this.x,this.y,otherBall.x,otherBall.y);
+          if (m < 50) {
+            size -= 10;
+            this.x = random(50, w-50);
+            this.y = random(50, h-50);
+            setTimeout(function(){
+              size += 10;
+            }, 1500);
           }
         }
       }
@@ -120,6 +138,7 @@
         this.y ;
         this.show = function(){
           fill(color('green'));
+          strokeWeight(0);
           rect(this.x,this.y,25,25);
         }
         this.bigger = function(){
@@ -130,9 +149,20 @@
             this.y = random(50, h-50);
             setTimeout(function(){
             size -= 25;
-            }, 3000);
+            }, 1500);
           }
         }
+        this.slower = function(){
+         n = dist(this.x,this.y,ball.x,ball.y);
+         if (n < 50) {
+          sonic -= 3;
+          this.x = random(50, w-50);
+          this.y = random(50, h-50);
+          setTimeout(function(){
+          sonic += 3;
+          }, 1500);
+        }
+       }
       }
     </script>
   </body>
