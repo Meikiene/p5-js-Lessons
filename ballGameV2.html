@@ -17,11 +17,13 @@
     var otherBall = new otherBall();
     var power = new power();
     var grow = new grow();
+    var timer = new timer();
     var d;
     var s;
     var g;
     var n;
     var m;
+    var t = 45;
     var sonic = 10;
     var size = 50;
       function setup(){
@@ -44,6 +46,7 @@
         grow.show();
         grow.bigger();
         grow.slower();
+        timer.show();
       }
       function ball(){ //this is an object.
         this.x = 100;
@@ -72,7 +75,7 @@
         this.tag = function(){
           d = dist(this.x,this.y,otherBall.x,otherBall.y); //dist() is a function that takes the distance of the coodinate of this ball and the otherball
           if (d < 25) { // if the value of d (the distance of the two balls) is less than 50 then a window will pop up signaling that you lose.
-            window.alert("You Lose!");
+            window.alert("Blue wins! Red loses!");
             noloop();
           }
         }
@@ -162,6 +165,16 @@
           sonic += 3;
           }, 1500);
         }
+       }
+       function timer(){
+         this.show = function(){
+         if (t > 0){
+           t--;
+         }
+         else{
+           window.alert("Red wins! Blue loses!");
+         }
+         }
        }
       }
     </script>
