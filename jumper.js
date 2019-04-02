@@ -24,10 +24,10 @@ function jumper() {
             this.y = 0;
             this.velocity = 0;
           }
-          if ((keyIsDown(37)) && (this.x > 0)){
+          if ((keyIsDown(65)) && (this.x > 0)){
            this.x += -10;
          }
-         if (keyIsDown(39) && (this.x < w-25)){
+         if (keyIsDown(68) && (this.x < w-25)){
            this.x +=10;
          }
         };
