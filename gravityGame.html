@@ -5,11 +5,17 @@
     <script src="barrier.js"></script>
     <script src="platform.js"></script>
     <script src="p5/p5.collide2d.min.js"></script>
+    <script src="p5/addons/p5.dom.min.js"></script>
+    <script language="javascript" type="text/javascript" src="p5/addons/p5.dom.js"></script>
     <style>
       body{
         margin: 0;
         padding: 0;
         overflow: hidden;
+      }
+      #scoreID{
+        color:white;
+        font-size: 25px;
       }
     </style>
   </head>
@@ -20,13 +26,19 @@
     var jumper = new jumper();
     var barrier = new barrier();
     var barrier2 = new barrier2();
+    var barrier3 = new barrier3();
     var platform = new platform();
     var hit = false;
     var hit2 = false;
     var hit3 = false;
+    var hit4 = false;
+    var score = 0;
+    var scoreDiv;
       function setup(){
         createCanvas(w,h);
-        
+        scoreDiv = createDiv("Your Score: " + score);
+        scoreDiv.id("scoreID");
+        scoreDiv.position(0,0);
       }
       
       function draw(){
@@ -37,16 +49,26 @@
         barrier.update();
         barrier2.show();
         barrier2.update();
+        barrier3.show();
+        barrier3.update();
         platform.show();
         hit = collideRectCircle(barrier.x,barrier.y,barrier.width,barrier.height,jumper.x,jumper.y,50);
         hit2 = collideRectCircle(barrier2.x,barrier2.y,barrier2.width,barrier2.height,jumper.x,jumper.y,50);
-        hit3 = collideRectCircle(platform.x,platform.y,platform.width,platform.height,jumper.x,jumper.y,50);
-        if ((hit == true) || (hit2 == true)){
+        hit3 = collideRectCircle(barrier3.x,barrier3.y,barrier3.width,barrier3.height,jumper.x,jumper.y,50);
+        hit4 = collideRectCircle(platform.x,platform.y,platform.width,platform.height,jumper.x,jumper.y,50);
+        if ((hit == true) || (hit2 == true) || (hit3 == true)){
+          window.alert("You lose!");
           noLoop();
           console.log("hit detected! im depresso");
         }
-        if (hit3 == true){
+        /*else if (!hit){
+          score += 1;
+          document.getElementById("scoreID").innerHTML ="Your Score: " + score;
+        }*/
+        if (hit4 == true){
           jumper.velocity = -10;
+          //score += 1;
+          //document.getElementById("scoreID").innerHTML ="Your Score: " + score;
         }
       }
     </script>
